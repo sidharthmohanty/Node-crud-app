@@ -1,0 +1,64 @@
+extends ../layout/base 
+block content
+	section.content-header 
+		h4 
+			| Welcome to Product Inventory
+			small 
+	section.content
+		.box
+			.box-header.with-border
+				h3.box-title
+					| Sheet
+				.box-tools.float-right
+					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+						i.fa.fa-minus
+			.box-body
+				- if(messages.msg_info)
+					.alert.alert-success.alert-dismissable
+						button.close(type='button', data-dismiss='alert', aria-hidden='true')
+							| ×
+						h4
+							i.icon.fa.fa-check
+							| Success!
+						| !{messages.msg_info}
+				- if(messages.msg_error)
+					.alert.alert-danger.alert-dismissable
+						button.close(type='button', data-dismiss='alert', aria-hidden='true')
+							| ×
+						h4
+							i.icon.fa.fa-ban
+							| Alert!
+						| !{messages.msg_error}
+				a(href='/inno/add').float-left.btn.btn-info
+					i.fa.fa-plus 
+					|  New Form
+				iframe(style="display:none")#txtArea1
+				button(id="btnExport" onclick="fnExcelReport();").btn.btn-info.float-right
+					| EXPORT
+				.data-table
+					table.table.table-bordered.table-striped#headerTable
+						tr
+							th
+								| No
+							th
+								| Product Name
+							th
+								| Model
+							th
+								| Price(Rs.)
+							th
+								| Details
+							th
+								| Product update date
+							if messages.msg_error
+								| !{messages.msg_error}
+							else
+								for row in data
+									tr
+										td #{row.id}
+										td #{row.i_type}
+										td #{row.i_model}
+										td #{row.i_price}
+										td #{row.i_details}
+										td #{row.i_date}
+										

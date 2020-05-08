@@ -1,0 +1,70 @@
+extends ../layout/base 
+block content 
+	.row
+		.col-sm-10
+			section.content-header 
+				h1
+					| Form
+			section.content
+				.box
+					.box-header.with-border
+						h3.box-title
+							| Please Enter Product details..
+						.box-tools.float-right
+							button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+								i.fa.fa-minus
+					.box-body
+						form(role='form',method='post' action='/inno/add')
+							.row
+								.col-sm-12
+									.box-body.formhead
+										- if (messages.msg_error) 
+											.alert.alert-danger.alert-dismissable 
+												button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+													| ×
+												h4
+													i.icon.fa.fa-ban
+													| Alert!
+												| !{messages.msg_error}
+									.form-group
+										label.control-label
+											|	Choose Product:
+											.input-group
+												select(name="i_type").form-control#sel1
+													option(value='Boosters')
+														| Boosters
+													option(value='Jammers')
+														| Jammers
+													option(value='CCTV')
+														| CCTV
+													option(value='Locks')
+														| Locks
+									.form-group
+										label.control-label
+											| Model Name:
+										.input-group
+											input(type='text',name='i_model',placeholder='Enter the model no..').form-control
+											.input-group-append
+												span.input-group-text
+													i.fa.fa-pen
+									.form-group
+										label.control-label
+											| Price(Rs.):
+										.input-group
+											input(type='number',name='i_price',placeholder='Enter price..').form-control
+											.input-group-append
+												span.input-group-text
+													i.fa.fa-rupee-sign
+									.form-group
+										label.control-label
+											| Product details
+										.input-group
+											textarea(name='i_details',placeholder='Enter product details..').form-control
+											.input-group-append
+												span.input-group-text
+													i.fa.fa-info-circle
+									.box-footer
+										a(href='/inno/sheet').btn.btn-danger
+											| Back
+										button(type='submit').btn.btn-success.float-right
+											| Submit

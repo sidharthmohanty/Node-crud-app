@@ -1,0 +1,88 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+		h1 
+			| Edit Sheet
+			small 
+		ol.breadcrumb 
+			li 
+				a(href='#') 
+					i.fa.fa-dashboard
+					| Level 
+			li.active Here 
+	section.content
+		.box
+			.box-header.with-border
+				h3.box-title
+					| Customer
+				.box-tools.float-right
+					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+						i.fa.fa-minus
+			.box-body
+				.row
+					.col-xs-12
+						.box-body
+							- if (messages.msg_error) 
+								.alert.alert-danger.alert-dismissable 
+									button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+										| ×
+									h4
+										i.icon.fa.fa-ban
+										| Alert! 
+									| !{messages.msg_error}
+							- if (messages.msg_info) 
+								.alert.alert-success.alert-dismissable 
+									button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+										| ×
+									h4
+										i.icon.fa.fa-ban
+										| Success! 
+									| !{messages.msg_info}
+							table.table.table-bordered.table-striped#headerTable
+								tr
+									th
+										| Case Number / Email Sub-Line
+									th
+										| Customer ID (From which amount to be deducted)
+									th
+										| Customer ID (In which amount to be added)
+									th
+										| Amount(Rs.)
+									th
+										| Verification against
+									th
+										| Reason of Amount transfer	
+								tr
+									td #{data.case_number_or_email_sub}
+									td #{data.customer_id_d}
+									td #{data.customer_id_c}
+									td #{data.amount}
+									td #{data.verification_remarks}
+									td #{data.amount_transfer_reason}
+				.row
+					.col-xs-12
+						.box-body
+							form(role='form',method='post' action='/rnb/edit/#{(id==undefined) ? data.id : id}')
+								table.table.table-bordered.table-striped#headerTable
+									tr
+										th
+											| Amount Added
+										th
+											| Amount Deducted
+										th
+											| Remarks
+									tr
+										td
+											input(type='text',name='amount_added',placeholder='Yes/ No', autofocus).form-control
+										td
+											input(type='text',name='amount_deducted',placeholder='Yes/ No').form-control
+										td
+											input(type='text',name='remarks',placeholder='Enter Remarks..').form-control
+								.box-footer
+									input(type="hidden",name="_method", value="PUT")
+									button(type='submit').btn.btn-success.float-right
+										i.fa.fa-save
+										|  Save
+									a(href='/rnb/').btn.btn-danger
+										i.fa.fa-arrow-left
+										|  Back

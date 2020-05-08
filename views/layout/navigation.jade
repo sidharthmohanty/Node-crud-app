@@ -1,0 +1,31 @@
+header.main-header
+	a(href='/home', style="text-decoration:none").logo
+		span.logo-mini
+			i.fa.fa-home(style="font-size:20px !Important;" aria-hidden="true")
+		span.logo-lg
+			b
+				| Innovatiview
+	nav(role='navigation').navbar.navbar-static-top
+		a(href='#', role='button', data-toggle='offcanvas').sidebar-toggle
+			i.fa.fa-bars(style="font-size:20px !Important;" aria-hidden="true")
+		.navbar-custom-menu
+			ul.nav.navbar-nav
+				li.dropdown.user.user-menu
+					a(href='#',data-toggle='dropdown').dropdown-toggle
+						img(src='/images/user.png',alt='User Image').user-image
+						span.hidden-xs
+							| Admin Name
+					ul.dropdown-menu
+						li.user-header
+							img(src='/images/user.png',alt='User Image').rounded-circle
+							p
+								| Admin
+								small
+									| (LOB)
+						li.user-footer
+							.float-left
+								a(href='#').btn.btn-default.btn-flat
+									| Profile
+							.float-right
+								a(href='#').btn.btn-default.btn-flat
+									| Sign out
